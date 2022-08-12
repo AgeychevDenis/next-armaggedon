@@ -1,0 +1,19 @@
+.inner {
+   display: flex;
+}
+
+.date {
+   margin-bottom: 8px;
+}
+
+.inner {
+   margin-bottom: 19px;
+}
+
+.description{
+   margin-left: 11px;
+}
+
+.description p{
+   line-height: 24px;
+}
