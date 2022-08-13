@@ -2,20 +2,36 @@ import styles from './Product.module.css';
 import { ProductProps } from './Product.props';
 import Image from 'next/image';
 import { Button } from '../Button/Button';
+import { numberSeparator } from '../../helpers/helpers';
 
-export default function Product({ className, ...props }: ProductProps) {
+export default function Product({ data, className, ...props }: ProductProps) {
+   const { name, is_potentially_hazardous_asteroid, estimated_diameter, close_approach_data } = data;
+
+   const fullDate = close_approach_data[0].close_approach_date;
+
+   const objDate = new Date(fullDate),
+      locale = "ru-ru",
+      month = objDate.toLocaleString(locale, { month: "long" });
+
+   const regExpDelBrackets = /[()]/g;
+
    return (
       <div className={styles.wrapper} {...props}>
-         <p className={styles.date}>12 сентября 2021</p>
+         <p className={styles.date}>{`${fullDate.substring(8, 10)} ${month} ${fullDate.substring(0, 4)}`}</p>
          <div className={styles.inner}>
             <div className={styles.img}>
-               <Image width={93} height={95} alt="paln" src='/long.svg' />
+               <Image
+                  width={93}
+                  height={95}
+                  alt={name}
+                  src={is_potentially_hazardous_asteroid ? '/closely.svg' : '/long.svg'}
+               />
             </div>
             <div className={styles.description}>
-               <p>Астероид 2021 FQ</p>
-               <p>Ø 85 м</p>
-               <p>↔ 7 400 135 км</p>
-               <p>Не опасен</p>
+               <p>{name.replace(regExpDelBrackets, '')}</p>
+               <p>Ø {Math.floor(estimated_diameter.meters.estimated_diameter_max)} м</p>
+               <p>↔ {numberSeparator(close_approach_data[0].miss_distance.kilometers)} км</p>
+               <p>{is_potentially_hazardous_asteroid ? 'Опасен' : 'Не опасен'}</p>
             </div>
          </div>
          <Button>Уничтожить</Button>

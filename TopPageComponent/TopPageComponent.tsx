@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import Product from '../components/Product/Product';
 import styles from './TopPageComponent.module.css';
 import { TopPageComponentProps } from './TopPageComponent.props';
+import { format } from 'date-fns';
+import { ProductModel } from '../interfaces/product.interface';
 
-export default function TopPageComponent({ json }): JSX.Element {
-  const [data, setData] = useState();
+export default function TopPageComponent({ nearEarth }: TopPageComponentProps): JSX.Element {
+  const [products, setProducts] = useState<{}>([]);
+
+  const todaysDate = format(new Date(), 'yyyy-MM-dd');
 
   useEffect(() => {
-    setData(json)
+    setProducts(nearEarth)
   }, []);
-
-  console.log(data);
 
 
   return (
@@ -26,12 +28,7 @@ export default function TopPageComponent({ json }): JSX.Element {
         </div>
       </div>
       <div className={styles.wrapperBottom}>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products && products?.[todaysDate]?.map((product: ProductModel) => <Product key={product.id} data={product} />)}
       </div>
     </>
   );
