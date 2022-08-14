@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button } from '../Button/Button';
 import { numberSeparator } from '../../helpers/helpers';
 
-export default function Product({ data, className, ...props }: ProductProps) {
+export default function Product({ kmRange, lunarRange, data, className, ...props }: ProductProps) {
    const { name, is_potentially_hazardous_asteroid, estimated_diameter, close_approach_data } = data;
 
    const fullDate = close_approach_data[0].close_approach_date;
@@ -13,7 +13,11 @@ export default function Product({ data, className, ...props }: ProductProps) {
       locale = "ru-ru",
       month = objDate.toLocaleString(locale, { month: "long" });
 
-   const regExpDelBrackets = /[()]/g;
+   function withSpaces(x: string): string {
+      return Math.ceil(Number(x))
+         .toString()
+         .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+   }
 
    return (
       <div className={styles.wrapper} {...props}>
@@ -28,9 +32,12 @@ export default function Product({ data, className, ...props }: ProductProps) {
                />
             </div>
             <div className={styles.description}>
-               <p>{name.replace(regExpDelBrackets, '')}</p>
+               <p>{name.replace(/[()]/g, '')}</p>
                <p>Ø {Math.floor(estimated_diameter.meters.estimated_diameter_max)} м</p>
-               <p>↔ {numberSeparator(close_approach_data[0].miss_distance.kilometers)} км</p>
+               <p>↔ {kmRange
+                  ? numberSeparator(close_approach_data[0].miss_distance.kilometers)
+                  : numberSeparator(close_approach_data[0].miss_distance.lunar)
+               } км</p>
                <p>{is_potentially_hazardous_asteroid ? 'Опасен' : 'Не опасен'}</p>
             </div>
          </div>
