@@ -11,7 +11,11 @@ export const Cart = ({ children, className, ...props }: CartProps): JSX.Element 
    }));
 
    const onDelete = () => {
-      dispatch(clearCart())
+      if (
+         window.confirm("Бригады им. Брюса Уиллиса летит на выбранные астероиды?")
+      ) {
+         dispatch(clearCart(cart.id))
+      }
    }
 
    return (

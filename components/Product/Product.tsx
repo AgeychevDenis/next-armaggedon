@@ -3,10 +3,24 @@ import { ProductProps } from './Product.props';
 import Image from 'next/image';
 import { Button } from '../Button/Button';
 import { getDate, numberSeparator } from '../../helpers/helpers';
+import { addCartItem, CartItem } from '../../redux/slice/productSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function Product({ kmRange, data, onAddCartItem, cart, className, ...props }: ProductProps) {
+export default function Product({ data, className, ...props }: ProductProps) {
 
   const { name, is_potentially_hazardous_asteroid, estimated_diameter, close_approach_data, id } = data;
+
+  const dispatch = useDispatch();
+  const { kmRange, cart }: any = useSelector((state: any) => ({
+    kmRange: state.product.range.km,
+    cart: state.product.cart
+  }));
+
+  const onAddCartItem = (payload: CartItem) => {
+    dispatch(addCartItem(payload));
+    console.log(payload);
+  };
+
 
   const onAddCart = (e: any) => {
     e.preventDefault();

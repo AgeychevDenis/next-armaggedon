@@ -11,15 +11,12 @@ interface ProductState {
 }
 
 export type CartItem = {
-   id: number,
-   imageUrl: string,
-   title: string,
-   options: number,
-   volume: number,
-   voltage: number,
-   weight: number,
-   price: number,
-   count: number
+   name: string;
+   date: string;
+   distance: number;
+   size: number;
+   id: number;
+   checked: boolean;
 }
 
 const initialState: ProductState = {
@@ -51,20 +48,26 @@ export const productSlice = createSlice({
          state.collection += 20;
       },
       addCartItem(state, action: PayloadAction<CartItem>) {
+         // @ts-ignore
          state.cart.push(action.payload);
       },
       checkedItem(state, action: PayloadAction<any>) {
+         // @ts-ignore
          const findItem = state.cart.find(obj => obj.id === action.payload);
 
          if (findItem) {
+            // @ts-ignore
             findItem.checked = true;
          }
       },
       clearCart(state, action: PayloadAction<any>) {
+         // @ts-ignore
          state.cart = state.cart.filter((item) => item.checked === false && item.id !== action.payload);
       },
    },
 });
+
+
 
 export const { setDangerous, setKmRange, setLunarRange, setCollection, addCartItem, clearCart, checkedItem } = productSlice.actions;
 export default productSlice.reducer;

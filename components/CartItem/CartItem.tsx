@@ -2,19 +2,14 @@ import styles from './CartItem.module.css';
 import Image from 'next/image';
 import { getDate, numberSeparator } from '../../helpers/helpers';
 import { CartItemProps } from './CartItem.props';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkedItem } from '../../redux/slice/productSlice';
 
 export const CartItem = ({ data }: CartItemProps): JSX.Element => {
    const dispatch = useDispatch();
    const { name, distance, size, date, id } = data;
 
-   const { cart }: any = useSelector((state: any) => ({
-     cart: state.product.cart
-   }));
-
-   const onChecked = (id) => {
+   const onChecked = (id: string) => {
         dispatch(checkedItem(id));
     };
    
