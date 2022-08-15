@@ -5,18 +5,20 @@ import { TopPageComponentProps } from './TopPageComponent.props';
 import { ProductModel } from '../interfaces/product.interface';
 import { Filter } from '../components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDangerous, setKmRange, setLunarRange, setCollection } from "../redux/slice/productSlice";
+import { setDangerous, setKmRange, setLunarRange, setCollection, addCartItem } from "../redux/slice/productSlice";
 
 export default function TopPageComponent({ nearEarth }: TopPageComponentProps): JSX.Element {
   const [products, setProducts] = useState<[]>([]);
 
   const dispatch = useDispatch();
-  const { sort, kmRange, lunarRange, collection }: any = useSelector((state) => ({
+  const { sort, kmRange, lunarRange, collection, cart }: any = useSelector((state: any) => ({
     sort: state.product.sort,
     collection: state.product.collection,
     kmRange: state.product.range.km,
-    lunarRange: state.product.range.lunar
+    lunarRange: state.product.range.lunar,
+    cart: state.product.cart
   }));
+
 
   const onDangerous = () => {
     dispatch(setDangerous());
@@ -30,9 +32,13 @@ export default function TopPageComponent({ nearEarth }: TopPageComponentProps): 
     dispatch(setLunarRange());
   };
 
+  const onAddCartItem = (payload) => {
+    dispatch(addCartItem(payload));
+  };
+
   const scrollHandler = (e: any) => {
-    if (collection < products.length && e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
-      dispatch(setCollection());
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+      dispatch(setCollection(products.length));
     }
   };
 
@@ -58,8 +64,8 @@ export default function TopPageComponent({ nearEarth }: TopPageComponentProps): 
         {products && sort
           ? products
             .filter(product => product.is_potentially_hazardous_asteroid)
-            .map((product: ProductModel) => <Product key={product.id} data={product} kmRange={kmRange} />).slice(0, collection)
-          : products.map((product: ProductModel) => <Product key={product.id} data={product} kmRange={kmRange} />).slice(0, collection)}
+            .map((product: ProductModel) => <Product key={product.id} data={product} kmRange={kmRange} onAddCartItem={onAddCartItem} cart={cart} />).slice(0, collection)
+          : products.map((product: ProductModel) => <Product key={product.id} data={product} kmRange={kmRange} onAddCartItem={onAddCartItem} cart={cart} />).slice(0, collection)}
       </div>
     </>
   );

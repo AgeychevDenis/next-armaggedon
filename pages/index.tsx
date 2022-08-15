@@ -4,7 +4,7 @@ import { NextPageContext } from "next";
 
 
 interface HomePageProps {
-  data: any[];
+  data: [];
   url: string;
 };
 
