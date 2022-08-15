@@ -14,10 +14,17 @@
    grid-template-columns: 1fr auto;
 }
 
-.list {
+.range {
    display: flex;
 }
 
-.list li {
-   margin-left: 5px;
+.range span {
+   margin: 0 3px;
+   cursor: pointer;
+   text-decoration: underline;
+}
+
+.range span.active {
+   font-weight: 700;
+   text-decoration: none;
 }

@@ -52,7 +52,7 @@ export interface RelativeVelocity {
 
 export interface MissDistance {
 	astronomical: string;
-	lunar: string;
+	lunar: number;
 	kilometers: number;
 	miles: string;
 }

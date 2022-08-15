@@ -1,46 +1,17 @@
 import TopPageComponent from "../TopPageComponent/TopPageComponent";
 import axios from "axios";
 import { NextPageContext } from "next";
-import { setDangerous, setKmRange, setLunarRange } from "../redux/slice/productSlice";
-import { useSelector, useDispatch } from "react-redux";
+
 
 interface HomePageProps {
   data: any[];
   url: string;
 };
 
-function Home({ data, url }: HomePageProps): JSX.Element {
-  const dispatch = useDispatch();
-  const { sort, kmRange, lunarRange }: any = useSelector((state) => ({
-    sort: state.product.sort,
-    kmRange: state.product.range.km,
-    lunarRange: state.product.range.lunar
-  }));
- 
- 
-
-  const onDangerous = () => {
-    dispatch(setDangerous());
-  };
-
-  const onKm = () => {
-    dispatch(setKmRange());
-  };
-
-  const onLunar = () => {
-    dispatch(setLunarRange());
-  };
+function Home({ data }: HomePageProps): JSX.Element {
 
   return (
-    <TopPageComponent
-      nearEarth={data}
-      onDangerous={onDangerous}
-      onKm={onKm}
-      onLunar={onLunar}
-      sort={sort}
-      kmRange={kmRange}
-      lunarRange={lunarRange}
-    />
+    <TopPageComponent nearEarth={data} />
   );
 };
 
