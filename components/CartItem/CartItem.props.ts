@@ -8,5 +8,6 @@ export interface CartItemProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTML
       size: number;
       danger: boolean;
       id: string;
+      checked: boolean;
    }
 }

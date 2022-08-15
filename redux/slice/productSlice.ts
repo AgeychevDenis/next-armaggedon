@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductState {
-   sort: boolean,
+   sort: boolean;
    collection: number;
    range: {
-      km: boolean,
-      lunar: boolean,
+      km: boolean;
+      lunar: boolean;
    },
-   cart: []
+   cart: [];
 }
 
 export type CartItem = {
@@ -29,7 +29,7 @@ const initialState: ProductState = {
       km: true,
       lunar: false,
    },
-   cart: []
+   cart: [],
 };
 
 export const productSlice = createSlice({
@@ -52,9 +52,19 @@ export const productSlice = createSlice({
       },
       addCartItem(state, action: PayloadAction<CartItem>) {
          state.cart.push(action.payload);
-      }
+      },
+      checkedItem(state, action: PayloadAction<any>) {
+         const findItem = state.cart.find(obj => obj.id === action.payload);
+
+         if (findItem) {
+            findItem.checked = true;
+         }
+      },
+      clearCart(state, action: PayloadAction<any>) {
+         state.cart = state.cart.filter((item) => item.checked === false && item.id !== action.payload);
+      },
    },
 });
 
-export const { setDangerous, setKmRange, setLunarRange, setCollection, addCartItem } = productSlice.actions;
+export const { setDangerous, setKmRange, setLunarRange, setCollection, addCartItem, clearCart, checkedItem } = productSlice.actions;
 export default productSlice.reducer;

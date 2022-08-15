@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '../Button/Button';
 import { CartItem } from '../CartItem/CartItem';
 import styles from './Cart.module.css';
+import { clearCart } from '../../redux/slice/productSlice';
 import { CartProps } from './Cart.props';
 
 export const Cart = ({ children, className, ...props }: CartProps): JSX.Element => {
@@ -10,6 +10,9 @@ export const Cart = ({ children, className, ...props }: CartProps): JSX.Element 
       cart: state.product.cart,
    }));
 
+   const onDelete = () => {
+      dispatch(clearCart())
+   }
 
    return (
       <div className={styles.wrapper} {...props}>
@@ -17,7 +20,7 @@ export const Cart = ({ children, className, ...props }: CartProps): JSX.Element 
          {cart.length
             ? cart.map((item: any) => <CartItem key={item.id} data={item} />)
             : <div className={styles.text}>Добавьте заказы к уничтожению &#128640;</div>}
-         <button className={styles.btn}>Уничтожить им. Брюса Уиллиса</button>
+         <button onClick={() => onDelete()} className={styles.btn}>Отправить заказ</button>
       </div>
    );
 };

@@ -15,8 +15,8 @@ export default function Product({ kmRange, data, onAddCartItem, cart, className,
       date: close_approach_data[0].close_approach_date,
       distance: close_approach_data[0].miss_distance.kilometers,
       size: estimated_diameter.meters.estimated_diameter_max,
-      danger: is_potentially_hazardous_asteroid,
       id: id,
+      checked: false
     };
     if (!cart.map((item: any) => item.id).includes(obj.id)) {
       onAddCartItem(obj);

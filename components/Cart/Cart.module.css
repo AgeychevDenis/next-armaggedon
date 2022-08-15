@@ -12,11 +12,14 @@
 }
 
 .btn {
-   background-color: #c31f1f;
+   width: 209px;
+   height: 56px;
+   background: #186DD6;
+   border-radius: 4px;
    font-size: 20px;
-   padding: 10px 15px;
-   border-radius: 15px;
+   line-height: 32px;
    color: #fff;
+   transition: background-color .3s;
 }
 
 .btn:hover {
