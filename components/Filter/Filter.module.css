@@ -32,3 +32,20 @@
 .lable {
    margin-left: 5px;
 }
+
+@media (max-width: 900px) {
+   .filter {
+      display: block;
+   }
+
+   .range {
+      margin-bottom: 10px;
+   }
+}
+
+@media (max-width: 600px) {
+   .range {
+      display: block;
+      line-height: 120%;
+   }
+}

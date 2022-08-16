@@ -24,3 +24,15 @@
    grid-area: footer;
    padding: 0px 16px;
 }
+
+@media (max-width: 1060px){
+   .wrapper { 
+      gap: 24px 0px;
+   }
+}
+
+@media (max-width: 650px){
+   .body {
+      padding: 0px 10px;
+   }  
+}

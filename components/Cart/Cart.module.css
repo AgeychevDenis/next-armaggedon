@@ -25,3 +25,10 @@
 .btn:hover {
    background-color: var(--red-hover);
 }
+
+@media (max-width: 650px){
+   .btn {
+      width: 100%;
+
+   }  
+}

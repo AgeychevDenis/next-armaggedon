@@ -29,13 +29,14 @@ export const Filter = (): JSX.Element => {
          <div className={styles.filter}>
             <div className={styles.range}>
                Отображать расстояние:
-               <span onClick={onKm} className={cn({ [styles.active]: kmRange })}
-               >в километрах </span>
-               |
-               <span onClick={onLunar} className={cn({ [styles.active]: lunarRange })}
-               >в лунных орбитах
-               </span>
-
+               <div>
+                  <span onClick={onKm} className={cn({ [styles.active]: kmRange })}
+                  >в километрах </span>
+                  |
+                  <span onClick={onLunar} className={cn({ [styles.active]: lunarRange })}
+                  >в лунных орбитах
+                  </span>
+               </div>
             </div>
             <form>
                <input id="form__input-checkbox" className={styles.input} onChange={onDangerous} type="checkbox" />

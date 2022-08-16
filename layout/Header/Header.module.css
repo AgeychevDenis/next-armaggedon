@@ -28,7 +28,7 @@
    line-height: 20px;
 }
 
-.links a{
+.links a {
    text-decoration-line: underline;
 }
 
@@ -38,15 +38,27 @@
 
 .img {
    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: -1;
 }
 
 .active {
    font-weight: bold;
 }
 
-.links .active{
+.links .active {
    text-decoration-line: none;
+}
+
+@media (max-width: 700px) {
+   .header {
+      display: block;
+      height: auto;
+   }
+
+   .links {
+      margin-top: 10px;
+   }
 }
