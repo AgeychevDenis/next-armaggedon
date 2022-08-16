@@ -22,7 +22,7 @@ export interface Context extends NextPageContext {
   resolvedUrl: string;
 }
 
-const API_KEY = 'Edz5U0rdyNOtbLINXjvxWvGwDE0jc2H0wDng3qMB';
+export const API_KEY = 'Edz5U0rdyNOtbLINXjvxWvGwDE0jc2H0wDng3qMB';
 
 export const getServerSideProps = async (ctx: Context): Promise<any> => {
   function getTodayDate() {

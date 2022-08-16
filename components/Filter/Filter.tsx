@@ -2,7 +2,6 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDangerous, setKmRange, setLunarRange } from '../../redux/slice/productSlice';
 import styles from './Filter.module.css';
-import { FilterProps } from './Filter.props';
 
 export const Filter = (): JSX.Element => {
    const dispatch = useDispatch();

@@ -31,3 +31,5 @@ export function getDate(date: string) {
      return `${day} декабря ${year}`;
    }
  }
+
+ 

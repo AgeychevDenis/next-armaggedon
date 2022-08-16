@@ -1,0 +1,87 @@
+.block {
+   display: flex;
+   background-color: #e6eded;
+   padding: 15px;
+   margin: 20px 0;
+   background-color: #e6eded;
+   border-radius: 10px;
+}
+
+.info {
+   margin-left: 20px;
+}
+
+.infoTilte,
+.fullTitle {
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+
+.infoItem p {
+   margin-bottom: 5px;
+}
+
+.blockDanger {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #ffdfdf;
+   border-radius: 10px;
+   padding: 15px;
+   margin: 20px 0;
+}
+
+.blockDanger button {
+   height: 40px;
+
+   font-weight: 700;
+   font-size: 11px;
+   line-height: 20px;
+   border-radius: 10px;
+   padding: 0 10px;
+
+   color: var(--white);
+   background-color: #c31f1f;
+
+   text-transform: uppercase;
+   transition: opacity 0.3s;
+}
+
+.blockDanger button:hover {
+   opacity: 0.8;
+}
+
+.danger {
+   display: flex;
+}
+
+.danger p {
+   margin-right: 5px;
+}
+
+.full {
+   background-color: #cedaf3;
+   padding: 15px;
+}
+
+.fullList {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 10px;
+   padding-bottom: 5px;
+   border-bottom: 1px solid #000;
+}
+
+.fullList:last-child {
+   margin-bottom: 0px;
+   border-bottom: none;
+}
+
+.fullList li {
+   line-height: 24px;
+}
+
+.fullList span {
+   font-weight: 700;
+}

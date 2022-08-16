@@ -104,3 +104,8 @@ h6 {
   --black: black;
   --gray: #D7D7D7;
 }
+
+.disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}

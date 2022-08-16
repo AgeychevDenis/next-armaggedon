@@ -30,7 +30,5 @@ export const CartItem = ({ data }: CartItemProps): JSX.Element => {
             <label htmlFor={id} className={styles.lable}>Выбрать астероид</label>
          </form>
       </div>
-
-
    )
 }
